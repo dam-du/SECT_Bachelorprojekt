@@ -13,7 +13,7 @@ source "docker" "debian" {
 }
 
 build {
-  name = "debian-with-cowrie"
+  name = "debian-honeypot"
   sources = [
     "source.docker.debian",
   ]
