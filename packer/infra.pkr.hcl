@@ -37,7 +37,7 @@ build {
   }
 
   provisioner "file" {
-    source      = "./upload/honeypot"
+    source      = "./upload/honeypot/"
     destination = "/home/cowrie/"
   }
 
@@ -45,6 +45,7 @@ build {
     scripts = [
       "./scripts/setup_cowrie.sh",
       "./scripts/setup_iptables.sh",
+      "./scripts/setup_honeypot_libs.sh",
     ]
   }
 
