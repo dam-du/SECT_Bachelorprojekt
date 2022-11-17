@@ -9,6 +9,6 @@ source cowrie-env/bin/activate
 pip install --upgrade pip
 pip install --upgrade -r requirements.txt
 
-mv /home/cowrie/honeypot/cowrie.cfg /home/cowrie/cowrie/etc/
-mv /home/cowrie/honeypot/cowrie.sh /
+mv /home/cowrie/cowrie.cfg /home/cowrie/cowrie/etc/
+mv /home/cowrie/cowrie.sh /
 chown -R cowrie:cowrie /home/cowrie/cowrie
