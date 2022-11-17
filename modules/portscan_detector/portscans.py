@@ -3,7 +3,7 @@
 pyscanlogger: Simple port scan detector/logger tool, inspired
 by scanlogd {http://www.openwall.com/scanlogd}
 
-
+source: iotac honeypot_image
 """
 
 import sys, os
