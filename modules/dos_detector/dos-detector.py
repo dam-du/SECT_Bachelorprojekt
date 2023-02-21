@@ -11,22 +11,32 @@ def handler(packet):
     line_edited = remove_unsused(packet_summary).split(" ")
     analyzer(line_edited, host_ip)
 
+def append_to_log(msg):
+    with open("/home/cowrie/cowrie/var/log/cowrie/cowrie.log", "a") as myfile:
+        myfile.write(msg+"\n")
+
 def analyzer(line_edited, host_ip):
     if line_edited[0] == "ICMP":
         if line_edited[2] == host_ip:
             if line_edited[3] == 'echo-reply':
-                print("DOS-Detector: Smurf from", line_edited[1], "detected")
+                msg = "DOS-Detector: Smurf from {} detected".format(line_edited[1])
+                append_to_log(msg)
         elif line_edited[6] == "Raw":
-            print("Ping from", line_edited[1], "received")
+                msg = "Ping from {} received".format(line_edited[1])
+                append_to_log(msg)
     elif line_edited[0] == "TCP":
         if "S" in line_edited:
             if "Raw" in line_edited:
                 ip_and_port = line_edited[1].split(":")
-                print("DOS-Detector: Synflood from", ip_and_port[0], "detected")
+                msg = "DOS-Detector: Synflood from {} detected".format(ip_and_port[0])
+                append_to_log(msg)
     elif "frag" in line_edited[3]:
-        print("DOS-Detector: Pingflood from", line_edited[0], "detected")
+        msg = "DOS-Detector: Pingflood from {} detected".format(line_edited[0])
+        append_to_log(msg)
     else:
-        print("unclassified", line_edited)
+        msg = "unclassified {}".format(line_edited)
+        myfile = open("unclassified",'a+')
+        myfile.write(msg+"\n")
 
 def remove_unsused(line_raw):
     return remove_Ether(line_raw)
