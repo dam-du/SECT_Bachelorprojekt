@@ -37,17 +37,5 @@ def remove_IP(line_with_ip):
 def remove_symbol(line_with_symbol):
     return line_with_symbol.replace(" >", "")
 
-def order_bag_of_words(bag_of_words, desc=False):
-   words = [(word, cnt) for word, cnt in bag_of_words.items()]
-   return sorted(words, key=lambda x: x[1], reverse=desc)
-
-def record_word_cnt(words, bag_of_words):
-    for word in words:
-        if word != '':
-            if word.lower() in bag_of_words:
-                bag_of_words[word.lower()] += 1
-            else:
-                bag_of_words[word.lower()] = 1
-
 if __name__ == '__main__':
     main()
