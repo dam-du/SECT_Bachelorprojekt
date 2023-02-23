@@ -1,0 +1,29 @@
+Ether / IPv6 / ICMPv6ND_RS / ICMPv6 Neighbor Discovery Option - Source Link-Layer Address a6:ba:6b:ce:c7:71 2023-02-22 23:55:30
+Ether / ARP who has 172.17.0.2 says 172.17.0.3 2023-02-22 23:57:04
+Ether / ARP is at 02:42:ac:11:00:02 says 172.17.0.2 2023-02-22 23:57:04
+Ether / ARP who has 172.17.0.3 says 172.17.0.2 2023-02-22 23:57:09
+Ether / ARP is at 02:42:ac:11:00:03 says 172.17.0.3 2023-02-22 23:57:09
+Ether / IPv6 / ICMPv6ND_RS / ICMPv6 Neighbor Discovery Option - Source Link-Layer Address a6:ba:6b:ce:c7:71 2023-02-22 23:57:17
+Ether / IPv6 / ICMPv6ND_RS / ICMPv6 Neighbor Discovery Option - Source Link-Layer Address a6:ba:6b:ce:c7:71 2023-02-23 00:00:52
+Ether / ARP who has 172.17.0.2 says 172.17.0.3 2023-02-23 00:13:41
+Ether / ARP is at 02:42:ac:11:00:02 says 172.17.0.2 2023-02-23 00:13:41
+Ether / ARP who has 172.17.0.3 says 172.17.0.2 2023-02-23 00:13:46
+Ether / ARP is at 02:42:ac:11:00:03 says 172.17.0.3 2023-02-23 00:13:46
+Ether / ARP who has 172.17.0.2 says 172.17.0.3 2023-02-23 00:14:01
+Ether / ARP is at 02:42:ac:11:00:02 says 172.17.0.2 2023-02-23 00:14:01
+Ether / ARP who has 172.17.0.1 says 172.17.0.3 2023-02-23 00:14:01
+Ether / IPv6 / ICMPv6ND_RS / ICMPv6 Neighbor Discovery Option - Source Link-Layer Address 72:87:b6:5e:ff:b4 2023-02-23 00:14:06
+Ether / ARP who has 172.17.0.4 says 172.17.0.3 2023-02-23 00:14:26
+Ether / ARP who has 172.17.0.2 says 172.17.0.4 2023-02-23 00:14:26
+Ether / ARP is at 02:42:ac:11:00:02 says 172.17.0.2 2023-02-23 00:14:26
+Ether / ARP who has 172.17.0.2 says 172.17.0.3 2023-02-23 00:14:44
+Ether / ARP is at 02:42:ac:11:00:02 says 172.17.0.2 2023-02-23 00:14:44
+Ether / ARP who has 172.17.0.3 says 172.17.0.2 2023-02-23 00:15:27
+Ether / ARP is at 02:42:ac:11:00:03 says 172.17.0.3 2023-02-23 00:15:27
+Ether / IPv6 / ICMPv6ND_RS / ICMPv6 Neighbor Discovery Option - Source Link-Layer Address 72:87:b6:5e:ff:b4 2023-02-23 00:16:00
+Ether / ARP who has 172.17.0.2 says 172.17.0.3 2023-02-23 00:16:37
+Ether / ARP is at 02:42:ac:11:00:02 says 172.17.0.2 2023-02-23 00:16:37
+Ether / ARP who has 172.17.0.3 says 172.17.0.2 2023-02-23 00:16:42
+Ether / ARP is at 02:42:ac:11:00:03 says 172.17.0.3 2023-02-23 00:16:42
+Ether / ARP who has 172.17.0.3 says 172.17.0.2 2023-02-23 00:17:18
+Ether / ARP is at 02:42:ac:11:00:03 says 172.17.0.3 2023-02-23 00:17:18
