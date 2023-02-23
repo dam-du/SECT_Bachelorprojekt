@@ -14,22 +14,22 @@ def handler(packet):
     if packet.haslayer(ICMP) or "icmp" in packet_summary:
         if packet.getlayer(IP).src != host_ip and "echo-reply" in packet_summary:
             append_to_log("DOS-Detector: Smurf from {} at {} detected.".format(packet.getlayer(IP).src, dt))
-            append_to_file(packet_summary, "/home/cowrie/modules/dos_detector/data_smurf")
+            append_to_file(packet_summary, "/home/cowrie/modules/dos_detector/data/data_smurf")
         else:
 #            print("ICMP ping")
             if(is_icmp_flood(packet_summary)):
                 append_to_log("DOS-Detector: ICMP-Flood from {} at {} detected.".format(packet.getlayer(IP).src, dt))
-            append_to_file(packet_summary, "/home/cowrie/modules/dos_detector/data_ping_icmp")
+            append_to_file(packet_summary, "/home/cowrie/modules/dos_detector/data/data_ping_icmp")
 
     elif packet.haslayer(TCP) or "tcp" in packet_summary:
         if packet.haslayer(Raw):
 #           print("TCP ping", packet_summary)
             if(is_tcp_flood(packet_summary)):
                 append_to_log("DOS-Detector: TCP-Flood from {} at {} detected.".format(packet.getlayer(IP).src, dt))
-            append_to_file(packet_summary, "/home/cowrie/modules/dos_detector/data_ping_tcp")
+            append_to_file(packet_summary, "/home/cowrie/modules/dos_detector/data/data_ping_tcp")
     else:
 #        print("unclassified", packet.show(), packet_summary)
-        append_to_file(packet_summary, "/home/cowrie/modules/dos_detector/unclassified")
+        append_to_file(packet_summary, "/home/cowrie/modules/dos_detector/data/unclassified")
     
 def append_to_file(msg, file_name):
     with open(file_name, "a+") as myfile:
@@ -42,7 +42,7 @@ def append_to_log(msg):
 def is_icmp_flood(packet_summary):
     counter = 0
     dt_now = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
-    filepath = "/home/cowrie/modules/dos_detector/data_ping_icmp"
+    filepath = "/home/cowrie/modules/dos_detector/data/data_ping_icmp"
     is_exist = os.path.exists(filepath)
     if is_exist:
         with open(filepath) as fp:
@@ -65,7 +65,7 @@ def is_icmp_flood(packet_summary):
 def is_tcp_flood(packet_summary):
     counter = 0
     dt_now = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
-    filepath = "/home/cowrie/modules/dos_detector/data_ping_tcp"
+    filepath = "/home/cowrie/modules/dos_detector/data/data_ping_tcp"
     is_exist = os.path.exists(filepath)
     if is_exist:
         with open(filepath) as fp:
