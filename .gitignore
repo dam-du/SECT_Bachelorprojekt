@@ -9,4 +9,4 @@ crash.log
 
 modules/dos_detector/data
 modules/sniffer
-packer/upload/bruteforce
+packer/upload/testcase/bruteforce
