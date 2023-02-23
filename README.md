@@ -4,7 +4,7 @@ SSH honeypot built with Cowrie with some extension modules:
 - Portscan Detection
 - Brute Force Detection
 - DOS Detection
-- Malware Detection [in progress]
+- Malware Detection [WIP]
 
 ## Infrastructure
 
