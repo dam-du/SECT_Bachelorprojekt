@@ -2,8 +2,7 @@
 export DEBIAN_FRONTEND=noninteractive
 
 apt-get update 
-apt install python3-pip -y
-apt-get install libpcap-dev -y
+apt-get install python3-pip libpcap-dev -y
 
 cd /home/cowrie/libs/dpkt/
 python3 setup.py build

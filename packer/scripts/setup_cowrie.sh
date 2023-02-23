@@ -7,6 +7,7 @@ cd cowrie
 virtualenv --python=python3 cowrie-env
 source cowrie-env/bin/activate
 pip install --upgrade pip
+pip install scapy
 pip install --upgrade -r requirements.txt
 
 mv /home/cowrie/cowrie.cfg /home/cowrie/cowrie/etc/
