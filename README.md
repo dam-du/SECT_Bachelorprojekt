@@ -16,7 +16,7 @@ First, we use **Packer** to create a **__custom image__** for our **honeypot** a
 
 ## Installation
 
-## Prerequisite
+### Prerequisite
 
 * [Docker](https://docs.docker.com/get-docker/), [Git](https://github.com/git-guides/install-git), and [Packer](https://developer.hashicorp.com/packer/tutorials/docker-get-started/get-started-install-cli) must be installed before installing this project.
 
