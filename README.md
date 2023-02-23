@@ -8,7 +8,7 @@ SSH honeypot built with Cowrie with some extension modules:
 
 ## Infrastructure
 
-This project is implemented with infrastructure as code using Packer, so most of the image creation process is automated. The images created are up to date and contain all the packages needed for this project.
+This project is implemented with infrastructure as code using packer, so most of the image's creation is automated. The images created are up to date and contain all the packages needed for this project. After the images are created, it will be then used by packer to be run as containers. The system in this project contain of a honeypot container, attacker container, and a simple nginx container.
 
 ## How it works
 
