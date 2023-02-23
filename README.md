@@ -52,6 +52,6 @@ We need **3 terminals** ( on Windows preferably with **WSL**):
 - There are multiple attack cases, and they can be found inside `/testcase/`
 - How to run and showcase about testcase can be found in [Testcase README.md](https://github.com/dam-du/SECT_Bachelorprojekt/blob/main/packer/upload/testcase/README.md)
 
-### Cleanup
+## Cleanup
 
 Run `./clean.sh` to stop, and remove all containers and images associated with the project.
