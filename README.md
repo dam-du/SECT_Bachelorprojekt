@@ -31,8 +31,7 @@ We need **3 terminals** ( on Windows preferably with **WSL**):
 	`git clone https://github.com/dam-du/SECT_Bachelorprojekt.git`
 - Change directory to the root of our project
 	`cd SECT_Bachelorprojekt/`
-- Run `./build.sh` to build our infrastructure.
-*Note: *this script creates custom images with packer and runs them in containers**
+- Run `./build.sh` to build our infrastructure with packer and create the containers.
 ![Showcase of Honeypot's Deployment](https://github.com/dam-du/SECT_Bachelorprojekt/blob/main/graphics/clone_and_build.gif)
 
 **2nd Terminal:** Starting cowrie on honeypot's container
@@ -46,6 +45,7 @@ We need **3 terminals** ( on Windows preferably with **WSL**):
 `docker exec -it honeypot_container bin/bash`
 - Run `./activate_mods.sh`, it starts all extension modules for the honeypot.
 - After activating the modules, the last 10 lines of the log file will be displayed on the terminal. Any malicious activity will be displayed on the logs.
+
 ![Showcase of Honeypot's Setup](https://github.com/dam-du/SECT_Bachelorprojekt/blob/main/graphics/setup_honeypot.gif)
 
 
@@ -54,6 +54,7 @@ We need **3 terminals** ( on Windows preferably with **WSL**):
 `docker exec -it attacker_container /bin/bash`
 - There are multiple attack cases, and they can be found inside `/testcase/`
 - How to run and showcase about testcase can be found in [Testcase README.md](https://github.com/dam-du/SECT_Bachelorprojekt/blob/main/packer/upload/testcase/README.md)
+
 ![Showcase of Connecting to Attacker's Container](https://github.com/dam-du/SECT_Bachelorprojekt/blob/main/graphics/connect_to_attacker.gif)
 
 ## Cleanup
