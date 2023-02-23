@@ -7,5 +7,5 @@ crash.log
 # For built boxes
 *.box
 
-dos_detector/data
-sniffer
+modules/dos_detector/data
+modules/sniffer
