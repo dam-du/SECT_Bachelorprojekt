@@ -1,29 +1,34 @@
-# SECT Bachelor Project: Honeypot - Attack Testcase
-Some attack testcase:
+
+# SECT Bachelor Project: Honeypot - Testcases
+### Introduction
+These testcases are available inside our attacker's container
 - Portscan
-- Brute Force
+- Bruteforce [WIP]
 - DOS: Flood and Smurf
-- Malware [in progress]
+- Malware [WIP]
 
-## Intro
-To run the testcase, we need to connect with our **attacker-container**.
-For that we can run `docker exec -it attacker /bin/bash`
-All attack demonstrations are located in the folder `/testcase/`
-Now we can choose which attack to demonstrate:
-
+To run these testcases, we need to connect with our **attacker-container**.
+They can be found inside `/testcase/`
+  
 ### Portscan
-Portscan is a scanning method to find out which ports are open on the target system. There are 2 kinds of portscan:
-1. Simple portscan: `./portscan/portscan.sh`
-2. Advanced portscan: `./portscan/portscan_advanced.sh`
-Notes: Advanced portscan scan every possible TCP port and it is more aggresive.
 
-### Brute Force
+Portscan is a scanning method to find out which ports are open on the target system. There are 2 kinds of portscan:
+1. Simple portscan: `/testcase/portscan/portscan.sh`
+2. Advanced portscan: `/testcase/portscan/portscan_advanced.sh`
+
+*Notes: Advanced portscan scan every possible TCP port and it is more aggresive, and it takes longer time to finish.*
+
+### Brute Force [WIP]
+
 All possible usernames are stored in `usernames.txt` and all possible passwords in `passwords.txt`. The script tries all username-password combinations and if a working combination is found, it will be stored separately.
-To run simply run `./bruteforce/bruteforce.sh`
+
+~~To run simply run `/testcase/bruteforce/bruteforce.sh`~~
 
 ### DOS (Denial of Service)
-DoS Testcase consist of 2 different method: flooding and smurf.
-1. To run flooding attack run `./DOS/flood/flood.sh`
-2. To run smurf attack run `./DOS/smurf/smurf.sh`
+The testcases consist of 2 different method: flooding and smurf.
+**Flood attacks** occur when the system receives too much traffic for the server to buffer, causing them to slow down and eventually stop. Meanwhile **smurf attack** is a distributed denial-of-service attack in which large numbers of Internet Control Message Protocol packets with the intended victim's spoofed source IP are broadcast to a computer network using an IP broadcast address.
+1. To run flooding attack run `/testcaste/dos/flood/flood.sh`
+2. To run syn-flooding attack run `/testcaste/dos/flood/synflood.sh`
+3. To run smurf attack run `/testcase/dos/smurf/smurf.sh`
 
-### Malware (upcoming)
+### Malware [WIP]
