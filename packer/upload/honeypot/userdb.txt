@@ -19,4 +19,4 @@ root:x:*
 tomcat:x:*
 oracle:x:*
 *:x:somepassword
-# *:x:*
+*:x:*

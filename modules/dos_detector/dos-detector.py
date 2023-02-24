@@ -10,6 +10,9 @@ def handler(packet):
     host_name=socket.gethostname()   
     host_ip=socket.gethostbyname(host_name)
     packet_summary = packet.summary() + " " + dt
+    
+    # Distributed Anomaly Detection
+    append_to_log("DAD: "+packet_summary)
 
     if packet.haslayer(ICMP) or "icmp" in packet_summary:
         if packet.getlayer(IP).src != host_ip and "echo-reply" in packet_summary:
@@ -22,7 +25,7 @@ def handler(packet):
             append_to_file(packet_summary, "/home/cowrie/modules/dos_detector/data/data_ping_icmp")
 
     elif packet.haslayer(TCP) or "tcp" in packet_summary:
-        if packet.haslayer(Raw):
+        if packet.haslayer(Raw) and not host_ip+":2222" in packet_summary:
 #           print("TCP ping", packet_summary)
             if(is_tcp_flood(packet_summary)):
                 append_to_log("DOS-Detector: TCP-Flood from {} at {} detected.".format(packet.getlayer(IP).src, dt))
@@ -82,7 +85,6 @@ def is_tcp_flood(packet_summary):
                     src_line = tmp[0]
                 else:
                     src_line = packet_edited[0]
-                
                 if(src_pkt == src_line):
                     dt = line_edited[len(line_edited)-2] + " " + line_edited[len(line_edited)-1]
                     date_time_obj = datetime.strptime(dt, '%Y-%m-%d %H:%M:%S')
