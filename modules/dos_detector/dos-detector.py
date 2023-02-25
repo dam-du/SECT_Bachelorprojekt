@@ -10,34 +10,49 @@ def handler(packet):
     host_name=socket.gethostname()   
     host_ip=socket.gethostbyname(host_name)
     packet_summary = packet.summary() + " " + dt
-
     if packet.haslayer(ICMP) or "icmp" in packet_summary:
         if packet.getlayer(IP).src != host_ip and "echo-reply" in packet_summary:
-            append_to_log("DOS-Detector: Smurf from {} at {} detected.".format(packet.getlayer(IP).src, dt))
+            msg = "DOS-Detector: Smurf from {} at {} detected.".format(packet.getlayer(IP).src, dt)
+            append_to_log(msg)
             append_to_file(packet_summary, "/home/cowrie/modules/dos_detector/data/data_smurf")
         else:
-#            print("ICMP ping")
             if(is_icmp_flood(packet_summary)):
-                append_to_log("DOS-Detector: ICMP-Flood from {} at {} detected.".format(packet.getlayer(IP).src, dt))
+                msg = "DOS-Detector: ICMP-Flood from {} at {} detected.".format(packet.getlayer(IP).src, dt)
+                append_to_log(msg)
             append_to_file(packet_summary, "/home/cowrie/modules/dos_detector/data/data_ping_icmp")
-
     elif packet.haslayer(TCP) or "tcp" in packet_summary:
-        if packet.haslayer(Raw):
-#           print("TCP ping", packet_summary)
+        if packet.haslayer(Raw) and not host_ip+":2222" in packet_summary:
             if(is_tcp_flood(packet_summary)):
-                append_to_log("DOS-Detector: TCP-Flood from {} at {} detected.".format(packet.getlayer(IP).src, dt))
+                msg = "DOS-Detector: TCP-Flood from {} at {} detected.".format(packet.getlayer(IP).src, dt)
+                append_to_log(msg)
             append_to_file(packet_summary, "/home/cowrie/modules/dos_detector/data/data_ping_tcp")
     else:
-#        print("unclassified", packet.show(), packet_summary)
         append_to_file(packet_summary, "/home/cowrie/modules/dos_detector/data/unclassified")
     
 def append_to_file(msg, file_name):
-    with open(file_name, "a+") as myfile:
-        myfile.write(msg+"\n")
+    with open(file_name, "a+") as f:
+        f.write(msg+"\n")
 
 def append_to_log(msg):
-    file_name = "/home/cowrie/cowrie/var/log/cowrie/cowrie.log"
-    append_to_file(msg, file_name)
+    if not is_alerted(msg):
+        file_log = "/home/cowrie/cowrie/var/log/cowrie/cowrie.log"
+        file_alert = "/home/cowrie/modules/dos_detector/data/data_alerted"
+        append_to_file(msg, file_log)
+        append_to_file(msg, file_alert)
+    else:
+        pass
+
+def is_alerted(packet_summary):
+    filepath = "/home/cowrie/modules/dos_detector/data/data_alerted"
+    is_exist = os.path.exists(filepath)
+    if is_exist:
+        with open(filepath) as f:
+            for line in f:
+                if packet_summary in line:
+                    return True
+        return False
+    else:
+        return False
 
 def is_icmp_flood(packet_summary):
     counter = 0
@@ -45,8 +60,8 @@ def is_icmp_flood(packet_summary):
     filepath = "/home/cowrie/modules/dos_detector/data/data_ping_icmp"
     is_exist = os.path.exists(filepath)
     if is_exist:
-        with open(filepath) as fp:
-            for line_raw in fp:
+        with open(filepath) as f:
+            for line_raw in f:
                 line_edited = remove_unsused(line_raw).strip().split(" ")
                 packet_edited = remove_unsused(packet_summary).split(" ")
                 if(packet_edited[0]==line_edited[0]):
@@ -68,8 +83,8 @@ def is_tcp_flood(packet_summary):
     filepath = "/home/cowrie/modules/dos_detector/data/data_ping_tcp"
     is_exist = os.path.exists(filepath)
     if is_exist:
-        with open(filepath) as fp:
-            for line_raw in fp:
+        with open(filepath) as f:
+            for line_raw in f:
                 line_edited = remove_unsused(line_raw).strip().split(" ")
                 packet_edited = remove_unsused(packet_summary).split(" ")
                 if ":" in packet_edited:
@@ -82,7 +97,6 @@ def is_tcp_flood(packet_summary):
                     src_line = tmp[0]
                 else:
                     src_line = packet_edited[0]
-                
                 if(src_pkt == src_line):
                     dt = line_edited[len(line_edited)-2] + " " + line_edited[len(line_edited)-1]
                     date_time_obj = datetime.strptime(dt, '%Y-%m-%d %H:%M:%S')
