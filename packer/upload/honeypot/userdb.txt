@@ -15,8 +15,10 @@
 root:x:!root
 root:x:!123456
 root:x:!/honeypot/i
-root:x:*
+root:x:!*
 tomcat:x:*
 oracle:x:*
 *:x:somepassword
 *:x:*
+cowrie:x:!*
+user:x:!*
