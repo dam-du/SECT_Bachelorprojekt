@@ -8,9 +8,11 @@ packer build .
 
 # run docker container
 cd ..
+mkdir -p honeypot_logs
 docker run \
  -d --privileged=true --name honeypot_container -it \
  --mount type=bind,source="$(pwd)"/modules,target=/home/cowrie/modules \
+ --mount type=bind,source="$(pwd)"/honeypot_logs,target=/home/cowrie/cowrie/var/log/cowrie \
  --privileged --expose 80 --expose 2222 honeypot_image:latest
 docker run -d --name attacker_container -it --privileged attacker_image:latest
 docker run --name simple-nginx -v /some/content:/usr/share/nginx/html:ro -d nginx
