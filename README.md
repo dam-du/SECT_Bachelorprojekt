@@ -51,6 +51,7 @@ We need **3 terminals** ( on Windows preferably with **WSL**):
 ![Showcase of Honeypot's Setup](https://github.com/dam-du/SECT_Bachelorprojekt/blob/main/graphics/setup_honeypot.gif)
 
 - Here is the showcase for the extended one.
+
 ![Showcase of Extended Honeypot's Setup](https://github.com/dam-du/SECT_Bachelorprojekt/blob/main/graphics/showcase_extended_distributed_anomaly_detector.gif)
 
 **3rd Terminal:** Attack testcases
