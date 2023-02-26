@@ -43,11 +43,15 @@ We need **3 terminals** ( on Windows preferably with **WSL**):
  **2nd Terminal:** Activating modules on honeypot's container 
 - Now we need to connect to honeypot as root user using:
 `docker exec -it honeypot_container bin/bash`
-- Run `./activate_mods.sh`, it starts all extension modules for the honeypot.
+- Now before we activate our modules, there are 2 different versions prepared: the normal and extended one. 
+	- Run `./activate_mods.sh`, it starts all extension modules for the honeypot (normal).
+	- Or run `./xactivate_mods.sh`, it starts all extension modules and push all network traffics to the log.
 - After activating the modules, the last 10 lines of the log file will be displayed on the terminal. Any malicious activity will be displayed on the logs.
 
 ![Showcase of Honeypot's Setup](https://github.com/dam-du/SECT_Bachelorprojekt/blob/main/graphics/setup_honeypot.gif)
 
+- Here is the showcase for the extended one.
+![Showcase of Extended Honeypot's Setup](https://github.com/dam-du/SECT_Bachelorprojekt/blob/main/graphics/showcase_extended_distributed_anomaly_detector.gif)
 
 **3rd Terminal:** Attack testcases
 - First we need to connect to our attacker's container
