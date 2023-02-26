@@ -18,7 +18,7 @@ Portscan is a scanning method to find out which ports are open on the target sys
 
 *Notes: Advanced portscan scan every possible TCP port and it is more aggresive, and it takes longer time to finish.*
 
-### Brute Force [WIP]
+### Brute Force
 
 All possible usernames are stored in `usernames.txt` and all possible passwords in `passwords.txt`. The script tries all username-password combinations and if a working combination is found, it will be stored in `credentials.txt`.
 
