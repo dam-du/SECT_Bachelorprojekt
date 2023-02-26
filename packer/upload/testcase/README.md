@@ -3,7 +3,7 @@
 ### Introduction
 These testcases are available inside our attacker's container
 - Portscan
-- Bruteforce [WIP]
+- Bruteforce
 - DOS: Flood and Smurf
 - Malware [WIP]
 
@@ -18,17 +18,17 @@ Portscan is a scanning method to find out which ports are open on the target sys
 
 *Notes: Advanced portscan scan every possible TCP port and it is more aggresive, and it takes longer time to finish.*
 
-### Brute Force [WIP]
+### Brute Force
 
-All possible usernames are stored in `usernames.txt` and all possible passwords in `passwords.txt`. The script tries all username-password combinations and if a working combination is found, it will be stored separately.
+All possible usernames are stored in `usernames.txt` and all possible passwords in `passwords.txt`. The script tries all username-password combinations and if a working combination is found, it will be stored in `credentials.txt`.
 
-~~To run simply run `/testcase/bruteforce/bruteforce.sh`~~
+To test simply run `/testcase/bruteforce/bruteforce.sh`
 
 ### DOS (Denial of Service)
 The testcases consist of 2 different method: flooding and smurf.
 **Flood attacks** occur when the system receives too much traffic for the server to buffer, causing them to slow down and eventually stop. Meanwhile **smurf attack** is a distributed denial-of-service attack in which large numbers of Internet Control Message Protocol packets with the intended victim's spoofed source IP are broadcast to a computer network using an IP broadcast address.
-1. To run flooding attack run `/testcaste/dos/flood/flood.sh`
-2. To run syn-flooding attack run `/testcaste/dos/flood/synflood.sh`
-3. To run smurf attack run `/testcase/dos/smurf/smurf.sh`
+1. To test flooding attack run `/testcaste/dos/flood/flood.sh`
+2. To test syn-flooding attack run `/testcaste/dos/flood/synflood.sh`
+3. To test smurf attack run `/testcase/dos/smurf/smurf.sh`
 
 ### Malware [WIP]
