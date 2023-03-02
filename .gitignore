@@ -8,5 +8,6 @@ crash.log
 *.box
 
 modules/dos_detector/data
+modules/malware_detector/data
 modules/sniffer
 honeypot_logs/
