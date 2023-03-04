@@ -14,7 +14,6 @@ import time
 # import threading
 import optparse
 
-
 # UDP - in progress...
 
 SCAN_TIMEOUT = 5
@@ -33,7 +32,7 @@ TH_FIN=dpkt.tcp.TH_FIN
 TCP=dpkt.tcp.TCP
 UDP=dpkt.udp.UDP
 
-get_timestamp = lambda : time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+get_timestamp = lambda : time.strftime('%Y-%m-%dT%H:%M:%S', time.localtime())
 
 class ScanEntry(object):
     """ Port scan entry """
@@ -205,14 +204,14 @@ class ScanLogger(object):
         ports = ','.join([str(port) for port in scan.ports])
 
         if not continuation:
-            line = '[PortscanModul][%s]: %s scan (flags:%d) from %s to %s (ports:%s)' % (get_timestamp(),
+            line = '%s [PSC]: %s scan (flags:%d) from %s to %s (ports:%s)' % (get_timestamp(),
                                                                           scan.type,
                                                                           scan.tcpflags_or,
                                                                           srcip,
                                                                           dstip,
                                                                           ports)
         else:
-            line = '[PortscanModul][%s]: Continuation of %s scan from %s to %s (ports:%s)' % (get_timestamp(),
+            line = '%s [PSC]: Continuation of %s scan from %s to %s (ports:%s)' % (get_timestamp(),
                                                                                scan.type,
                                                                                srcip,
                                                                                dstip,
