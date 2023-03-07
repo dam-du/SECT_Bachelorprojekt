@@ -129,23 +129,5 @@ def get_src_ip(packet_summary):
     splitted_packet = packet.split(' ')
     return splitted_packet[0]
 
-def remove_unsused(line_raw):
-    return remove_Ether(line_raw)
-
-def remove_Ether(line_with_ether):
-    return remove_IP(line_with_ether.replace("Ether / ", ""))
-
-def remove_IP(line_with_ip):
-    return remove_ICMP(line_with_ip.replace("IP / ", ""))
-
-def remove_ICMP(line_with_ip):
-    return remove_TCP(line_with_ip.replace("ICMP", ""))
-
-def remove_TCP(line_with_ip):
-    return remove_symbol(line_with_ip.replace("TCP", ""))
-
-def remove_symbol(line_with_symbol):
-    return line_with_symbol.replace(" >", "")
-
 if __name__ == "__main__":
     sniff(iface="eth0", prn=handler, store=0)
