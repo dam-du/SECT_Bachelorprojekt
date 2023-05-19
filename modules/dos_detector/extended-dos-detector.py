@@ -30,9 +30,10 @@ def handler(packet):
             append_to_file(packet_summary, "/home/cowrie/modules/dos_detector/data/data_ping_icmp")
     elif packet.haslayer(TCP) or "tcp" in packet_summary:
         if packet.haslayer(Raw) and not host_ip+":2222" in packet_summary and not 'PA / Raw' in packet_summary:
-            if(is_tcp_flood(packet_summary)):
-                msg = log_time + " [DOS]: TCP-Flood from {}.".format(packet.getlayer(IP).src)
-                append_to_log(msg)
+            if not 'A / Raw' in packet_summary:
+                if(is_tcp_flood(packet_summary)):
+                    msg = log_time + " [DOS]: TCP-Flood from {}.".format(packet.getlayer(IP).src)
+                    append_to_log(msg)
             append_to_file(packet_summary, "/home/cowrie/modules/dos_detector/data/data_ping_tcp")
     else:
         append_to_file(packet_summary, "/home/cowrie/modules/dos_detector/data/unclassified")
