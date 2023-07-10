@@ -7,15 +7,15 @@ packer {
   }
 }
 
-source "docker" "debian" {
-  image  = "debian:10"
+source "docker" "ubuntu" {
+  image  = "ubuntu:latest"
   commit = true
 }
 
 build {
-  name = "debian-honeypot"
+  name = "ubuntu-honeypot"
   sources = [
-    "source.docker.debian",
+    "source.docker.ubuntu",
   ]
 
   provisioner "shell" {
@@ -52,14 +52,14 @@ build {
   post-processor "docker-tag" {
     repository = "honeypot_image"
     tags       = ["latest"]
-    only       = ["docker.debian"]
+    only       = ["docker.ubuntu"]
   }
 }
 
 build {
-  name = "debian-attacker"
+  name = "ubuntu-attacker"
   sources = [
-    "source.docker.debian",
+    "source.docker.ubuntu",
   ]
 
   provisioner "shell" {
@@ -79,6 +79,6 @@ build {
   post-processor "docker-tag" {
     repository = "attacker_image"
     tags       = ["latest"]
-    only       = ["docker.debian"]
+    only       = ["docker.ubuntu"]
   }
 }
