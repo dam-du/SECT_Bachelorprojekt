@@ -13,6 +13,7 @@ import socket
 import time
 # import threading
 import optparse
+from datetime import datetime
 
 # UDP - in progress...
 
@@ -361,11 +362,15 @@ def main():
     if os.geteuid() != 0:
         sys.exit("You must be super-user to run this program")
 
+    datetime_today = datetime.today()
+    current_date_string = datetime_today.strftime("%Y-%m-%d")
+    file_log = '/home/cowrie/cowrie/var/log/cowrie/honeypot.log'
+
     o=optparse.OptionParser()
     o.add_option("-d", "--daemonize", dest="daemon", help="Daemonize",
                  action="store_true", default=False)
     o.add_option("-f", "--logfile", dest="logfile", help="File to save logs to",
-                 default="/portscans.log")
+                 default=file_log)
 
     options, args = o.parse_args()
     s=ScanLogger(SCAN_TIMEOUT, WEIGHT_THRESHOLD, 8192, options.daemon, options.logfile)

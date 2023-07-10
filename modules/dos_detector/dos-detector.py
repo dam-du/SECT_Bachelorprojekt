@@ -8,6 +8,7 @@ import socket
 def handler(packet):
     msg = ''
     datetime_today = datetime.today()
+    current_date_string = datetime_today.strftime("%Y-%m-%d")
     log_time = datetime_today.strftime('%Y-%m-%dT%H:%M:%S')
     dt = datetime_today.strftime('%Y-%m-%d %H:%M:%S')
     host_name=socket.gethostname()   
@@ -18,21 +19,25 @@ def handler(packet):
         if packet.getlayer(IP).src != host_ip and "echo-reply" in packet_summary:
             msg = log_time + " [DOS]: Smurf from {} (spoofed).".format(packet.getlayer(IP).src)
             append_to_log(msg)
-            append_to_file(packet_summary, "/home/cowrie/modules/dos_detector/data/data_smurf")
+            data_file_name = "/home/cowrie/cowrie/var/log/cowrie/dos/smurf.log"
+            append_to_file(packet_summary, data_file_name)
         else:
             if(is_icmp_flood(packet_summary, datetime_today, host_ip)):
                 msg = log_time + " [DOS]: ICMP-Flood from {}.".format(packet.getlayer(IP).src)
                 append_to_log(msg)
-            append_to_file(packet_summary, "/home/cowrie/modules/dos_detector/data/data_ping_icmp")
+            data_file_name = "/home/cowrie/cowrie/var/log/cowrie/dos/icmpflood.log"
+            append_to_file(packet_summary, data_file_name)
     elif packet.haslayer(TCP) or "tcp" in packet_summary:
         if packet.haslayer(Raw) and not host_ip+":2222" in packet_summary and not 'PA / Raw' in packet_summary:
             if not 'A / Raw' in packet_summary:
                 if(is_tcp_flood(packet_summary)):
                     msg = log_time + " [DOS]: TCP-Flood from {}.".format(packet.getlayer(IP).src)
                     append_to_log(msg)
-            append_to_file(packet_summary, "/home/cowrie/modules/dos_detector/data/data_ping_tcp")
+            data_file_name = "/home/cowrie/cowrie/var/log/cowrie/dos/tcpflood.log"
+            append_to_file(packet_summary, data_file_name)
     else:
-        append_to_file(packet_summary, "/home/cowrie/modules/dos_detector/data/unclassified")
+        data_file_name = "/home/cowrie/cowrie/var/log/cowrie/unclassified/unclassified.log"
+        append_to_file(packet_summary, data_file_name)
 
 def append_to_file(msg, file_name):
     with open(file_name, "a+") as f:
@@ -40,6 +45,8 @@ def append_to_file(msg, file_name):
 
 def append_to_log(msg):
     if not is_alerted(msg):
+        datetime_today = datetime.today()
+        current_date_string = datetime_today.strftime("%Y-%m-%d")
         file_log = '/home/cowrie/cowrie/var/log/cowrie/honeypot.log'
         append_to_file(msg, file_log)
 
@@ -53,7 +60,9 @@ def count_delta(datetime_now, readed_datetime):
     return delta
 
 def is_alerted(packet_summary):
-    filepath = "/home/cowrie/cowrie/var/log/cowrie/honeypot.log"
+    datetime_today = datetime.today()
+    current_date_string = datetime_today.strftime("%Y-%m-%d")
+    filepath = '/home/cowrie/cowrie/var/log/cowrie/honeypot.log'
     if os.path.exists(filepath):
         with open(filepath) as f:
             for line in f:
@@ -65,7 +74,9 @@ def is_alerted(packet_summary):
 
 def is_icmp_flood(packet_summary, datetime_now, host_ip):
     counter = 0
-    filepath = "/home/cowrie/modules/dos_detector/data/data_ping_icmp"
+    datetime_today = datetime.today()
+    current_date_string = datetime_today.strftime("%Y-%m-%d")
+    filepath = "/home/cowrie/cowrie/var/log/cowrie/dos/icmpflood.log"
     is_exist = os.path.exists(filepath)
     if is_exist:
         with open(filepath) as f:
@@ -84,8 +95,10 @@ def is_icmp_flood(packet_summary, datetime_now, host_ip):
 
 def is_tcp_flood(packet_summary):
     counter = 0
+    datetime_today = datetime.today()
+    current_date_string = datetime_today.strftime("%Y-%m-%d")
     dt_now = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
-    filepath = "/home/cowrie/modules/dos_detector/data/data_ping_tcp"
+    filepath = "/home/cowrie/cowrie/var/log/cowrie/dos/tcpflood.log"
     is_exist = os.path.exists(filepath)
     if is_exist:
         with open(filepath) as f:
