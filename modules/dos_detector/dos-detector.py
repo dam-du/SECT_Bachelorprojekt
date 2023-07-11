@@ -47,7 +47,7 @@ def append_to_log(msg):
     if not is_alerted(msg):
         datetime_today = datetime.today()
         current_date_string = datetime_today.strftime("%Y-%m-%d")
-        file_log = '/home/cowrie/cowrie/var/log/cowrie/honeypot.log'
+        file_log = '/home/cowrie/cowrie/var/log/cowrie/honeypot_DOS.log'
         append_to_file(msg, file_log)
 
 def count_delta(datetime_now, readed_datetime):
@@ -62,7 +62,7 @@ def count_delta(datetime_now, readed_datetime):
 def is_alerted(packet_summary):
     datetime_today = datetime.today()
     current_date_string = datetime_today.strftime("%Y-%m-%d")
-    filepath = '/home/cowrie/cowrie/var/log/cowrie/honeypot.log'
+    filepath = '/home/cowrie/cowrie/var/log/cowrie/honeypot_DOS.log'
     if os.path.exists(filepath):
         with open(filepath) as f:
             for line in f:

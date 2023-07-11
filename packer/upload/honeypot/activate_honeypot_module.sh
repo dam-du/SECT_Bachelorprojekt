@@ -11,4 +11,3 @@ python3 /home/cowrie/modules/utils/cleaner.py &
 
 touch /home/cowrie/cowrie/var/log/cowrie/honeypot.log
 mkdir -p /home/cowrie/cowrie/var/log/cowrie/data/recorded
-tail -f /home/cowrie/cowrie/var/log/cowrie/honeypot.log

@@ -364,7 +364,7 @@ def main():
 
     datetime_today = datetime.today()
     current_date_string = datetime_today.strftime("%Y-%m-%d")
-    file_log = '/home/cowrie/cowrie/var/log/cowrie/honeypot.log'
+    file_log = '/home/cowrie/cowrie/var/log/cowrie/honeypot_PSC.log'
 
     o=optparse.OptionParser()
     o.add_option("-d", "--daemonize", dest="daemon", help="Daemonize",
