@@ -19,13 +19,13 @@ def handler(packet):
         if packet.getlayer(IP).src != host_ip and "echo-reply" in packet_summary:
             msg = log_time + " [DOS]: Smurf from {} (spoofed).".format(packet.getlayer(IP).src)
             append_to_log(msg)
-            data_file_name = "/home/cowrie/cowrie/var/log/cowrie/dos/smurf.log"
+            data_file_name = "/home/iotac/src/SECT_Bachelorprojekt/honeypot_logs/dos/smurf.log"
             append_to_file(packet_summary, data_file_name)
         else:
             if(is_icmp_flood(packet_summary, datetime_today, host_ip)):
                 msg = log_time + " [DOS]: ICMP-Flood from {}.".format(packet.getlayer(IP).src)
                 append_to_log(msg)
-            data_file_name = "/home/cowrie/cowrie/var/log/cowrie/dos/icmpflood.log"
+            data_file_name = "/home/iotac/src/SECT_Bachelorprojekt/honeypot_logs/dos/icmpflood.log"
             append_to_file(packet_summary, data_file_name)
     elif packet.haslayer(TCP) or "tcp" in packet_summary:
         if packet.haslayer(Raw) and not host_ip+":2222" in packet_summary and not 'PA / Raw' in packet_summary:
@@ -33,10 +33,10 @@ def handler(packet):
                 if(is_tcp_flood(packet_summary)):
                     msg = log_time + " [DOS]: TCP-Flood from {}.".format(packet.getlayer(IP).src)
                     append_to_log(msg)
-            data_file_name = "/home/cowrie/cowrie/var/log/cowrie/dos/tcpflood.log"
+            data_file_name = "/home/iotac/src/SECT_Bachelorprojekt/honeypot_logs/dos/tcpflood.log"
             append_to_file(packet_summary, data_file_name)
     else:
-        data_file_name = "/home/cowrie/cowrie/var/log/cowrie/unclassified/unclassified.log"
+        data_file_name = "/home/iotac/src/SECT_Bachelorprojekt/honeypot_logs/unclassified/unclassified.log"
         append_to_file(packet_summary, data_file_name)
 
 def append_to_file(msg, file_name):
@@ -47,7 +47,7 @@ def append_to_log(msg):
     if not is_alerted(msg):
         datetime_today = datetime.today()
         current_date_string = datetime_today.strftime("%Y-%m-%d")
-        file_log = '/home/cowrie/cowrie/var/log/cowrie/honeypot_DOS.log'
+        file_log = '/home/iotac/src/SECT_Bachelorprojekt/honeypot_logs/honeypot_DOS.log'
         append_to_file(msg, file_log)
 
 def count_delta(datetime_now, readed_datetime):
@@ -62,7 +62,7 @@ def count_delta(datetime_now, readed_datetime):
 def is_alerted(packet_summary):
     datetime_today = datetime.today()
     current_date_string = datetime_today.strftime("%Y-%m-%d")
-    filepath = '/home/cowrie/cowrie/var/log/cowrie/honeypot_DOS.log'
+    filepath = '/home/iotac/src/SECT_Bachelorprojekt/honeypot_logs/honeypot_DOS.log'
     if os.path.exists(filepath):
         with open(filepath) as f:
             for line in f:
@@ -76,7 +76,7 @@ def is_icmp_flood(packet_summary, datetime_now, host_ip):
     counter = 0
     datetime_today = datetime.today()
     current_date_string = datetime_today.strftime("%Y-%m-%d")
-    filepath = "/home/cowrie/cowrie/var/log/cowrie/dos/icmpflood.log"
+    filepath = "/home/iotac/src/SECT_Bachelorprojekt/honeypot_logs/dos/icmpflood.log"
     is_exist = os.path.exists(filepath)
     if is_exist:
         with open(filepath) as f:
@@ -98,7 +98,7 @@ def is_tcp_flood(packet_summary):
     datetime_today = datetime.today()
     current_date_string = datetime_today.strftime("%Y-%m-%d")
     dt_now = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
-    filepath = "/home/cowrie/cowrie/var/log/cowrie/dos/tcpflood.log"
+    filepath = "/home/iotac/src/SECT_Bachelorprojekt/honeypot_logs/dos/tcpflood.log"
     is_exist = os.path.exists(filepath)
     if is_exist:
         with open(filepath) as f:
