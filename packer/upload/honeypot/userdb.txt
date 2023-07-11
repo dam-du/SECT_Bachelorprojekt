@@ -18,8 +18,6 @@ root:x:!/honeypot/i
 root:x:!*
 tomcat:x:*
 oracle:x:*
-*:x:somepassword
-*:x:*
 cowrie:x:!*
 user:x:!*
 0:x:!*
@@ -1848,3 +1846,4 @@ zyh:x:!*
 zyl:x:!*
 zzh:x:!*
 zzz:x:!*
+*:x:*
