@@ -26,6 +26,7 @@ user:x:!*
 123:x:!*
 1:x:!*
 345gs5662d34:x:!*
+*:x:!3245gs5662d34
 Admin:x:!*
 BEATRIZ:x:!*
 Flower:x:!*
