@@ -8,7 +8,7 @@ def packet_summary(packet):
     if IP in packet and packet[IP].src == ignored_ip:
         return  # Ignoriere Pakete von der ignorierten IP
     summary = f"{packet.summary()}"
-    log_dir = os.path.join(os.path.expanduser("~"), "log")
+    log_dir = '/home/iotac/src/SECT_Bachelorprojekt/honeypot_logs/dos/'
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
     log_filename = os.path.join(log_dir, time.strftime("%Y-%m-%d") + "-sniffed.log")
